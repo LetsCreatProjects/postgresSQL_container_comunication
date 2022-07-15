@@ -1,5 +1,13 @@
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
 
-<span style="color: green"> 
+<p style='color:red'>This is some red text.</p>
+
 # Two database machines into one using Docker
 
 Goal: Come up with a way to unite two database machines into one.
@@ -19,7 +27,7 @@ Notes:
    instances with one database each.
 3. If you use extra tools, not found by default on a standard Linux distribution, please
    explain how to set them up.
-</span>
+
 
 # Here are the steps:
 
