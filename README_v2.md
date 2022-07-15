@@ -10,23 +10,23 @@
 + text in green
 # Two database machines into one using Docker
 
-Goal: Come up with a way to unite two database machines into one.
-Details:
++Goal: Come up with a way to unite two database machines into one.
++Details:
 
-1. Use docker to create two containers of PostgreSQL database.
-2. In each container, create a database and fill it with some data of your choosing.
-3. Create a script (using bash/python/other) that will transfer all data from one database
-   container to the other.
++1. Use docker to create two containers of PostgreSQL database.
++2. In each container, create a database and fill it with some data of your choosing.
++3. Create a script (using bash/python/other) that will transfer all data from one database
++   container to the other.
 
-Notes:
++Notes:
 
-1. Please provide all scripts/configuration files you use, so we can repeat the process,
-   including the setup.
-2. PostgreSQL supports multiple databases in the same instance, so at the end, we want
-   to have one PostgreSQL instance with two separate databases, instead of two PostgreSQL
-   instances with one database each.
-3. If you use extra tools, not found by default on a standard Linux distribution, please
-   explain how to set them up.
++1. Please provide all scripts/configuration files you use, so we can repeat the process,
++   including the setup.
++2. PostgreSQL supports multiple databases in the same instance, so at the end, we want
++   to have one PostgreSQL instance with two separate databases, instead of two PostgreSQL
++   instances with one database each.
++3. If you use extra tools, not found by default on a standard Linux distribution, please
++   explain how to set them up.
 
 @@ text in purple (and bold)@@
 ```
