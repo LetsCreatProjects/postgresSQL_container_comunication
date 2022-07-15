@@ -6,6 +6,9 @@
 @@ text in purple (and bold)@@
 ``` -->
 
+<span style="color:blue">some *blue* text</span>.
+
+
 ```diff
 # Two database machines into one using Docker
 
