@@ -33,7 +33,9 @@ sudo docker --version
 
 2.  ### Create PostgresSQL container :
 sudo docker pull postgres
+
 sudo docker run -d --name tmp_postgres_sql_db -d --restart=unless-stopped -p 5432:5432 -e 'POSTGRES_PASSWORD=docker' postgres
+
 sudo docker run -d --name main_postgres_sql_db_ -d --restart=unless-stopped -p 5433:5433 -e 'POSTGRES_PASSWORD=docker' postgres
 
 sudo docker ps
