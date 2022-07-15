@@ -7,7 +7,6 @@
 ``` -->
 
 ```diff
-+ text in green
 # Two database machines into one using Docker
 
 +Goal: Come up with a way to unite two database machines into one.
@@ -18,7 +17,7 @@
 +3. Create a script (using bash/python/other) that will transfer all data from one database
 +   container to the other.
 
-+Notes:
+# Notes:
 
 +1. Please provide all scripts/configuration files you use, so we can repeat the process,
 +   including the setup.
