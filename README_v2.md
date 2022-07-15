@@ -81,16 +81,16 @@ nano /etc/ssh/sshd_config
 service ssh restart
 service --status-all
 
-<!-- With this command you can see that you have valid port to ssh connection : 0.0.0.0:22 -->
+- With this command you can see that you have valid port to ssh connection : 0.0.0.0:22
 apt-get install net-tools
 root@cebf20657667:/# netstat -tupan
 
-<!-- ssh to tmp container -->
-<!-- to see ip address of a container -->
+- ssh to tmp container
+- to see ip address of a container
 sudo docker inspect {container name} | grep IPAddress
 ssh root@{ipAddress}
 
-<!-- #--on host install to make connection to container via script-->
+- #--on host install to make connection to container via script
 apt-get install expect -y
 
 
@@ -146,22 +146,22 @@ psql -U postgres -d postdata_12 -f postgres_backup.sql
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```
 6. 
-<!-- commands to check that db has been transferred -->
+- commands to check that db has been transferred
 root@423eac21b4c1:/# psql -U postgres
 postgres=# \c postdata
 postdata=# \d
 postdata=# SELECT * FROM student;
 
 7. 
-<!-- remove unused container db-->
+- remove unused container db
 sudo docker rm -f <Container_ID> 
 sudo docker rm -f 423eac21b4c1
 
-<!-- Commands for additional operations: -->
+-- Commands for additional operations:
 
-<!-- # Stop all running containers -->
+-  Stop all running containers
 docker stop $(docker ps -aq)
-<!-- # Remove all containers -->
+-  Remove all containers
 docker rm $(docker ps -aq)
-<!-- remove all images (by force) from vm to start clean -->
+-  remove all images (by force) from vm to start clean
 sudo docker rmi $(sudo docker images -aq) --force
