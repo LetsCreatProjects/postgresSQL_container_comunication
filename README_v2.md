@@ -1,38 +1,27 @@
 # Two database machines into one using Docker
 
 Goal: Come up with a way to unite two database machines into one.
-
 Details:
 
 1. Use docker to create two containers of PostgreSQL database.
-
 2. In each container, create a database and fill it with some data of your choosing.
-
 3. Create a script (using bash/python/other) that will transfer all data from one database
-
    container to the other.
 
 Notes:
 
 1. Please provide all scripts/configuration files you use, so we can repeat the process,
-
    including the setup.
-
 2. PostgreSQL supports multiple databases in the same instance, so at the end, we want
-
    to have one PostgreSQL instance with two separate databases, instead of two PostgreSQL
-
    instances with one database each.
-
 3. If you use extra tools, not found by default on a standard Linux distribution, please
-
    explain how to set them up.
 
 
 # Here are the steps:
 
-
-1. Install Docker on 2 db machines on Linux (local host Ubuntu 22.04 Container OS Debian)
+1. ### Install Docker on 2 db machines on Linux (local host Ubuntu 22.04 Container OS Debian)
 
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -42,14 +31,14 @@ sudo systemctl start docker
 sudo systemctl enable docker
 sudo docker --version
 
-2.  Create PostgresSQL container :
+2.  ### Create PostgresSQL container :
 sudo docker pull postgres
 sudo docker run -d --name tmp_postgres_sql_db -d --restart=unless-stopped -p 5432:5432 -e 'POSTGRES_PASSWORD=docker' postgres
 sudo docker run -d --name main_postgres_sql_db_ -d --restart=unless-stopped -p 5433:5433 -e 'POSTGRES_PASSWORD=docker' postgres
 
 sudo docker ps
 
-3. Go inside your container and add additional database:
+3. ### Go inside your container and add additional database:
 
 sudo docker exec -it {container ID} bash
 psql -U postgres
@@ -66,7 +55,7 @@ create table student ( rolINo int,name varchar (10) ,primary key(rolINo));
 insert into student(rolINo, name) values (101, 'brijen');
 SELECT * FROM student;
 
-4. install ssh on both containers
+4. ### install ssh on both containers
 
 passwd root
 % docker
@@ -94,7 +83,7 @@ ssh root@{ipAddress}
 apt-get install expect -y
 
 
-5. run script to transfer db from one database container machine to another
+5. ### run script to transfer db from one database container machine to another
 - create file "dbImporter.sh" inside db container of postgresSQL, insert the code below.
 - run script by this command bash ./dbImporter.sh
 - Please notice that you can change variables like: IP, database's names, name of the files etc. for your need.
@@ -145,15 +134,13 @@ psql -U postgres -d postdata_12 -f postgres_backup.sql
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```
-6. 
-- commands to check that db has been transferred
+6. ###  commands to check that db has been transferred
 root@423eac21b4c1:/# psql -U postgres
 postgres=# \c postdata
 postdata=# \d
 postdata=# SELECT * FROM student;
 
-7. 
-- remove unused container db
+7. ### remove unused container db
 sudo docker rm -f <Container_ID> 
 sudo docker rm -f 423eac21b4c1
 
