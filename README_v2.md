@@ -1,3 +1,5 @@
+# Two database machines into one using Docker
+
 Goal: Come up with a way to unite two database machines into one.
 
 Details:
@@ -27,8 +29,8 @@ Notes:
    explain how to set them up.
 
 
+# Here are the steps:
 
-# Two database machines into one using Docker
 
 1. Install Docker on 2 db machines on Linux (local host Ubuntu 22.04 Container OS Debian)
 
