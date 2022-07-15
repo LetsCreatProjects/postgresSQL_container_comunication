@@ -6,8 +6,8 @@
 @@ text in purple (and bold)@@
 ```
 
-<p style='color:red'>This is some red text.</p>
-
+```diff
++ text in green
 # Two database machines into one using Docker
 
 Goal: Come up with a way to unite two database machines into one.
@@ -28,7 +28,8 @@ Notes:
 3. If you use extra tools, not found by default on a standard Linux distribution, please
    explain how to set them up.
 
-
+@@ text in purple (and bold)@@
+```
 # Here are the steps:
 
 1. ### Install Docker on 2 db machines on Linux (local host Ubuntu 22.04 Container OS Debian)
