@@ -100,6 +100,7 @@ apt-get install expect -y
 - Please notice that you can change variables like: IP, database's names, name of the files etc. for your need.
 - Also here you will see dummy password, and it is very recommend to change to strong passwords
 
+```bash
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #% script that moves one db to another , ,
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,6 +144,7 @@ sleep 3
 psql -U postgres -d postdata_12 -f postgres_backup.sql 
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+```
 6. 
 <!-- commands to check that db has been transferred -->
 root@423eac21b4c1:/# psql -U postgres
