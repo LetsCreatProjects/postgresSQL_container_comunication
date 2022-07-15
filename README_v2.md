@@ -1,4 +1,4 @@
-<!-- Goal: Come up with a way to unite two database machines into one.
+Goal: Come up with a way to unite two database machines into one.
 
 Details:
 
@@ -26,7 +26,7 @@ Notes:
 
    explain how to set them up.
 
--->
+
 
 # Two database machines into one using Docker
 
@@ -52,12 +52,12 @@ sudo docker ps
 sudo docker exec -it {container ID} bash
 psql -U postgres
 
-<!-- create table with parameters: -->
+- create table with parameters:
 CREATE DATABASE db_first_db_0;
 \l
 
 
-<!-- #Connect to database -->
+- Connect to database
 \c db_first_db_0
 create table student ( rolINo int,name varchar (10) ,primary key(rolINo));
 \d
@@ -74,7 +74,7 @@ apt-get install nano
 apt-get install openssh-client openssh-server -y
 nano /etc/ssh/sshd_config 
 
-<!-- % Change the line "PermitRootLogin yes" after line:#PermitRootLogin  -->
+- Change the line "PermitRootLogin yes" after line:#PermitRootLogin 
 
 service ssh restart
 service --status-all
@@ -96,6 +96,7 @@ apt-get install expect -y
 - create file "dbImporter.sh" inside db container of postgresSQL, insert the code below.
 - run script by this command bash ./dbImporter.sh
 - Please notice that you can change variables like: IP, database's names, name of the files etc. for your need.
+- Also here you will see dummy password, and it is very recommend to change to strong passwords
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #% script that moves one db to another , ,
