@@ -1,3 +1,5 @@
+
+<span style="color: green"> 
 # Two database machines into one using Docker
 
 Goal: Come up with a way to unite two database machines into one.
@@ -17,7 +19,7 @@ Notes:
    instances with one database each.
 3. If you use extra tools, not found by default on a standard Linux distribution, please
    explain how to set them up.
-
+</span>
 
 # Here are the steps:
 
