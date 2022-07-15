@@ -1,10 +1,10 @@
-```diff
+<!-- ```diff
 - text in red
 + text in green
 ! text in orange
 # text in gray
 @@ text in purple (and bold)@@
-```
+``` -->
 
 ```diff
 + text in green
@@ -27,8 +27,6 @@
 +   instances with one database each.
 +3. If you use extra tools, not found by default on a standard Linux distribution, please
 +   explain how to set them up.
-
-@@ text in purple (and bold)@@
 ```
 # Here are the steps:
 
