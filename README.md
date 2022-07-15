@@ -6,8 +6,9 @@
 @@ text in purple (and bold)@@
 ``` -->
 
+# Creation of 2 containers of PostgresSQL, creating data and merging 2 PostgresSQL instances.
+
 ```diff
-# Two database machines into one using Docker
 + Creation of two database containers using Docker 
 + Filling data to 2 Instances of PostgresSQL
 + Running script that merge two PostgresSQL Instances into one
