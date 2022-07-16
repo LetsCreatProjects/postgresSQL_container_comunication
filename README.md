@@ -65,6 +65,7 @@ Travel_date date not null
 
 \d
 <!-- insert into student(rolINo, name) values (101, 'brijen'); -->
+```json
 INSERT INTO passengers ("id", "name", "email", "age", "travel_to", "paymentv", "travel_date")
 VALUES
 (1, 'Jack', 'jack12@gmail.com', 20, 'Paris', 79000, '2018-1-1'),
@@ -73,7 +74,7 @@ VALUES
 (4, 'Stacy', 'stacy78@hotmail.com', 28, 'Maldives', 29000, '2017-6-9'),
 (5, 'Stevie', 'stevie@gmail.com', 49, 'Greece', 56700, '2021-12-12'),
 (6, 'Harry', 'harry@gmail.com', 22, 'Hogwarts', 670000, '2020-1-17');
-
+'''
 SELECT * FROM passengers;
 
 ### Creating table ont main PostgresSQL Instance (with values):
@@ -94,6 +95,7 @@ CREATE TABLE ChinaVsIndia(
 );
 
 \d
+```json
 <!-- insert into student(rolINo, name) values (101, 'brijen'); -->
 INSERT INTO ChinaVsIndia ("Index", "China", "India", "Year")
 VALUES
@@ -116,7 +118,7 @@ VALUES
 (17,1965,724218970,499123328),
 (18,1960,660408054,450547675),
 (19,1955,612241552,409880606);
-
+'''
 SELECT * FROM ChinaVsIndia;
 
 - Command to delete db if needed:
@@ -187,52 +189,6 @@ bash db_importer.sh
 - Please notice that you can change variables like: IP, database's names, name of the files etc. for your need.
 - Also here you will see dummy password, and it is very recommend to change to strong passwords. You can change vars in "config.conf" file.
 
-```bash
-
-# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# #% script that moves one db to another , ,
-# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-# #!/bin/bash
-# # # ---------------Connection and creation of .sql file + close the connection---Working
-# /usr/bin/expect -c ' 
-# spawn ssh root@172.17.0.2
-# sleep 1
-# send docker\n;
-# expect "*#" 
-# sleep 1
-# send "pg_dump -U postgres > postgres_backup.sql db_passengers\n" 
-# sleep 1
-# send "exit\n"
-# '
-# sleep 3
-# # # ---------------Connection via sftp and fetch .sql file + close the connection
-# /usr/bin/expect -c ' 
-# spawn sftp root@172.17.0.2 
-# sleep 1
-# send docker\n;
-# expect "sftp>"
-# send "get postgres_backup.sql\r"
-# expect "sftp>"
-# send "exit\r"
-# interact
-# '
-# sleep 3
-# # # ---------------works create db in postgrase
-# /usr/bin/expect -c ' 
-# spawn psql -U postgres
-# expect "postgres=#"
-# send "CREATE DATABASE postdata_12;\r"
-# sleep 1
-# expect "CREATE DATABASE"
-# send "\\\q\n"
-# '
-# # # ---------------restores from .sql to that db
-# sleep 3
-# psql -U postgres -d postdata_12 -f postgres_backup.sql 
-
-# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-```
 6. ###  commands to check that db has been transferred
 root@423eac21b4c1:/# psql -U postgres
 \l
