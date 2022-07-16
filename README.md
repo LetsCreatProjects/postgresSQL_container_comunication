@@ -6,7 +6,7 @@
 @@ text in purple (and bold)@@
 ``` -->
 
-# Creating 2 containers of PostgresSQL, creating data and merging 2 PostgresSQL instances into one.
+# Creating 2 containers of postgresSQL, create and transfer db from one postgresSQL db to another via script.
 
 ```diff
 + Creation of two database containers using Docker 
@@ -41,18 +41,6 @@ sudo docker run -d --name tmp_postgres_sql_db -d --restart=unless-stopped -p 543
 sudo docker run -d --name main_postgres_sql_db -d --restart=unless-stopped -p 5432:5432  --env-file=.env postgres 
 
 
-<!-- 
-sudo docker run -d --name main_postgres_sql_db -d --restart=unless-stopped -p 5432:5432 -e 'POSTGRES_PASSWORD=docker' postgres
-sudo docker run -d --name tmp_postgres_sql_db -d --restart=unless-stopped -p 5433:5433 -e 'POSTGRES_PASSWORD=docker' postgres
-
-sudo docker run -d --name test_pw_var -d --restart=unless-stopped -p 5435:5435 -e 'POSTGRES_PASSWORD=$PW' postgres 
-sudo docker run -d --name test_pw_var -d --restart=unless-stopped -p 5435:5435 -e 'POSTGRES_PASSWORD=$PW' postgres 
-sudo docker run -d --name test_pw_var_0 -d --restart=unless-stopped -p 5435:5435 -e --env-file=.env postgres 
-sudo docker run -d --name test_pw_var_1 -d --restart=unless-stopped -p 5437:5437 -e --env-file=.env postgres 
-sudo docker run -d --name test_pw_var_2 -d --restart=unless-stopped -p 5438:5438 --env-file=.env postgres 
-
-sudo docker exec -it 7f42e158da00 bash-->
-
 sudo docker ps
 
 3. ### Go inside your container and add additional database:
@@ -69,16 +57,16 @@ CREATE DATABASE db_passengers;
 <!-- 
 
 tmp_postgres_sql_db
-sudo docker inspect f63a51aa56ca | grep IPAddress
+sudo docker inspect 174058758a15 | grep IPAddress
 ssh root@172.17.0.2 
-sudo docker exec -it f63a51aa56ca bash
+sudo docker exec -it 174058758a15 bash
 
 
 Collect data
 main_postgres_sql_db_
-sudo docker inspect e71261904ee5 | grep IPAddress
+sudo docker inspect b00756075bac | grep IPAddress
 ssh root@172.17.0.3
-sudo docker exec -it e71261904ee5 bash
+sudo docker exec -it b00756075bac bash
 
 -->
 
@@ -120,7 +108,7 @@ VALUES
 ```
 SELECT * FROM passengers;
 
-### Creating table ont main PostgresSQL Instance (with values):
+### Creating table on main PostgresSQL Instance (with values):
 psql -U postgres
 
 CREATE DATABASE db_china_vs_india_population;
@@ -204,7 +192,7 @@ or
 
 ssh -o StrictHostKeyChecking=no $user@$host
 
-- This fragment "-o StrictHostKeyChecking=no" is for baypass "yes/no" quastion
+- This fragment "-o StrictHostKeyChecking=no" is for bypass "yes/no" question
 
 - to see ip address of a container at local host :
 sudo docker inspect {container name} | grep IPAddress
@@ -265,3 +253,6 @@ sudo docker ps
 -  remove all images (by force) from vm to start clean
 sudo docker rmi $(sudo docker images -aq) --force
 sudo docker images
+
+- Video link :
+https://www.youtube.com/watch?v=73cbWFKbNow
