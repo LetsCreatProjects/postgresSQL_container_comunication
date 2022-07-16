@@ -74,7 +74,7 @@ VALUES
 (4, 'Stacy', 'stacy78@hotmail.com', 28, 'Maldives', 29000, '2017-6-9'),
 (5, 'Stevie', 'stevie@gmail.com', 49, 'Greece', 56700, '2021-12-12'),
 (6, 'Harry', 'harry@gmail.com', 22, 'Hogwarts', 670000, '2020-1-17');
-'''
+```
 SELECT * FROM passengers;
 
 ### Creating table ont main PostgresSQL Instance (with values):
@@ -118,7 +118,7 @@ VALUES
 (17,1965,724218970,499123328),
 (18,1960,660408054,450547675),
 (19,1955,612241552,409880606);
-'''
+```
 SELECT * FROM ChinaVsIndia;
 
 - Command to delete db if needed:
