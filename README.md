@@ -25,6 +25,12 @@ sudo systemctl start docker
 sudo systemctl enable docker
 sudo docker --version
 
+
+<!--
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt install docker.io -y && sudo systemctl start docker && sudo systemctl enable docker && sudo docker --version
+  -->
+
+
 2.  ### Create PostgresSQL container :
 sudo docker pull postgres
 
@@ -63,16 +69,16 @@ CREATE DATABASE db_passengers;
 <!-- 
 
 tmp_postgres_sql_db
-sudo docker inspect e85966d8078e | grep IPAddress
+sudo docker inspect f63a51aa56ca | grep IPAddress
 ssh root@172.17.0.2 
-sudo docker exec -it e85966d8078e bash
+sudo docker exec -it f63a51aa56ca bash
 
 
 Collect data
 main_postgres_sql_db_
-sudo docker inspect 07bca16cb97f | grep IPAddress
+sudo docker inspect e71261904ee5 | grep IPAddress
 ssh root@172.17.0.3
-sudo docker exec -it 07bca16cb97f bash
+sudo docker exec -it e71261904ee5 bash
 
 -->
 
@@ -239,9 +245,13 @@ bash db_importer.sh
 6. ###  commands to check that db has been transferred
 root@423eac21b4c1:/# psql -U postgres
 \l
-\c postdata
+\c db_imported_data_3
 \d
 SELECT * FROM {table_name};
+
+<!-- 
+SELECT * FROM passengers;
+ -->
 
 7. ### remove unused container db
 - Only display list of container IDs
@@ -250,7 +260,7 @@ sudo docker ps -q
 sudo docker rm -f <Container_ID> <Container_ID> <Container_ID> 
 sudo docker ps
 
--- Commands for additional operations:
+- Commands for additional operations:
 
 -  remove all images (by force) from vm to start clean
 sudo docker rmi $(sudo docker images -aq) --force
