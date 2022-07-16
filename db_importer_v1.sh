@@ -67,15 +67,3 @@ sleep 1
 sleep 3
 psql -U postgres -d $DB_NEW_NAME -f $SQL_FILE_NAME
 echo "input psql -U postgres -d $DB_NEW_NAME -f $SQL_FILE_NAME"
-
-
-# psql -U postgres -d db_imported_data_3 -f postgres_backup_3.sql
-
-# psql -U postgres -d db_imported_data_3 -f postgres_backup_3.sql
-
-# # # ---------------Works
-# # psql -h localhost -U postgres -d postdata_1 -f postgres_backup.sql   
-# # psql -U postgres -d postdata_2 -f postgres_backup.sql 
-# # # # ---------------works
-
-# psql -h localhost -U postgres -d db_imported_data_3 -f postgres_backup_3.sql
