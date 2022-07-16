@@ -28,30 +28,63 @@ sudo docker --version
 2.  ### Create PostgresSQL container :
 sudo docker pull postgres
 
-sudo docker run -d --name main_postgres_sql_db -d --restart=unless-stopped -p 5432:5432 -e 'POSTGRES_PASSWORD=docker' postgres
+- declare password var with this command:
+- to make it secure, create file ".env" and input there password: "POSTGRES_PASSWORD=please_change_me"
 
+sudo docker run -d --name tmp_postgres_sql_db -d --restart=unless-stopped -p 5433:5433 --env-file=.env postgres 
+sudo docker run -d --name main_postgres_sql_db -d --restart=unless-stopped -p 5432:5432  --env-file=.env postgres 
+
+
+<!-- 
+sudo docker run -d --name main_postgres_sql_db -d --restart=unless-stopped -p 5432:5432 -e 'POSTGRES_PASSWORD=docker' postgres
 sudo docker run -d --name tmp_postgres_sql_db -d --restart=unless-stopped -p 5433:5433 -e 'POSTGRES_PASSWORD=docker' postgres
+
+sudo docker run -d --name test_pw_var -d --restart=unless-stopped -p 5435:5435 -e 'POSTGRES_PASSWORD=$PW' postgres 
+sudo docker run -d --name test_pw_var -d --restart=unless-stopped -p 5435:5435 -e 'POSTGRES_PASSWORD=$PW' postgres 
+sudo docker run -d --name test_pw_var_0 -d --restart=unless-stopped -p 5435:5435 -e --env-file=.env postgres 
+sudo docker run -d --name test_pw_var_1 -d --restart=unless-stopped -p 5437:5437 -e --env-file=.env postgres 
+sudo docker run -d --name test_pw_var_2 -d --restart=unless-stopped -p 5438:5438 --env-file=.env postgres 
+
+sudo docker exec -it 7f42e158da00 bash-->
 
 sudo docker ps
 
 3. ### Go inside your container and add additional database:
 
 sudo docker exec -it {container ID} bash
-<!-- 
-sudo docker exec -it 26bcce618c33 bash
-sudo docker exec -it 9a0cd89f3768 bash -->
 
 psql -U postgres
-
-### Creating table on tmp PostgresSQL Instance (with values):
 
 CREATE DATABASE db_passengers;
 \l
 
+### Creating table on tmp PostgresSQL Instance (with values):
+
+<!-- 
+
+tmp_postgres_sql_db
+sudo docker inspect e85966d8078e | grep IPAddress
+ssh root@172.17.0.2 
+sudo docker exec -it e85966d8078e bash
+
+
+Collect data
+main_postgres_sql_db_
+sudo docker inspect 07bca16cb97f | grep IPAddress
+ssh root@172.17.0.3
+sudo docker exec -it 07bca16cb97f bash
+
+-->
+
+
 - Connect to database
+
 \c db_passengers
+
 <!-- create table student ( rolINo int,name varchar (10) ,primary key(rolINo)); -->
 - create table with parameters:
+
+```bash
 
 create table passengers(
 Id int primary key not null,
@@ -63,9 +96,12 @@ Paymentv int not null,
 Travel_date date not null
 );
 
+```
+
 \d
 <!-- insert into student(rolINo, name) values (101, 'brijen'); -->
 ```bash
+
 INSERT INTO passengers ("id", "name", "email", "age", "travel_to", "paymentv", "travel_date")
 VALUES
 (1, 'Jack', 'jack12@gmail.com', 20, 'Paris', 79000, '2018-1-1'),
@@ -74,18 +110,23 @@ VALUES
 (4, 'Stacy', 'stacy78@hotmail.com', 28, 'Maldives', 29000, '2017-6-9'),
 (5, 'Stevie', 'stevie@gmail.com', 49, 'Greece', 56700, '2021-12-12'),
 (6, 'Harry', 'harry@gmail.com', 22, 'Hogwarts', 670000, '2020-1-17');
+
 ```
 SELECT * FROM passengers;
 
 ### Creating table ont main PostgresSQL Instance (with values):
+psql -U postgres
+
 CREATE DATABASE db_china_vs_india_population;
 \l
-_
 
 - Connect to database
+
 \c db_china_vs_india_population
 <!-- create table student ( rolINo int,name varchar (10) ,primary key(rolINo)); -->
 - create table with parameters:
+
+```bash
 
 CREATE TABLE ChinaVsIndia(
 "Index" int primary key not null,
@@ -94,10 +135,13 @@ CREATE TABLE ChinaVsIndia(
 "Year"  int not null
 );
 
+```
+
 \d
 
 <!-- insert into student(rolINo, name) values (101, 'brijen'); -->
 ```bash
+
 INSERT INTO ChinaVsIndia ("Index", "China", "India", "Year")
 VALUES
 (1,2021,1444216102,1393409033),
@@ -119,50 +163,52 @@ VALUES
 (17,1965,724218970,499123328),
 (18,1960,660408054,450547675),
 (19,1955,612241552,409880606);
+
 ```
 SELECT * FROM ChinaVsIndia;
 
 - Command to delete db if needed:
+
 postgres=# DROP DATABASE IF EXISTS {dbName};
+
 <!-- DROP DATABASE IF EXISTS db_china_vs_india_population; _-->
 
-_4. ### install ssh on both containers
+4. ### install ssh on both containers
 
 - Declare password for ssh connection
 passwd root
-% docker
+- After that command insert password of your choice and insert commands bellow
 
-apt-get update
+apt-get update && apt-get install nano && apt-get install openssh-client openssh-server -y && nano /etc/ssh/sshd_config 
+
+- Change the line "PermitRootLogin yes" after line:#PermitRootLogin and insert those commands
+
+service ssh restart && service --status-all
+
+<!-- apt-get update
 apt-get install nano
 apt-get install openssh-client openssh-server -y
-nano /etc/ssh/sshd_config 
+nano /etc/ssh/sshd_config  -->
 
-- Change the line "PermitRootLogin yes" after line:#PermitRootLogin 
 
-service ssh restart
-service --status-all
+- ssh to tmp container to see that all good and there is connection.There is 2 ways:
+spawn ssh -o StrictHostKeyChecking=no -l "$user" "$host"
 
-- ssh to tmp container
-- to see ip address of a container
+or
+
+ssh -o StrictHostKeyChecking=no $user@$host
+
+- This fragment "-o StrictHostKeyChecking=no" is for baypass "yes/no" quastion
+
+- to see ip address of a container at local host :
 sudo docker inspect {container name} | grep IPAddress
+<!--sudo docker inspect ssh_test | grep IPAddress 
+sftp root@172.17.0.5    -->
 ssh root@{ipAddress}
 
-- #--on host install to make connection to container via script
+- on host install "expect" to make be able to run expect script via bash script
 apt-get install expect -y
 
-
-<!-- 
-tmp_postgres_sql_db
-sudo docker inspect 26bcce618c33 | grep IPAddress
-ssh root@172.17.0.3
-sudo docker exec -it 26bcce618c33 bash
-
-main_postgres_sql_db_
-sudo docker inspect 9a0cd89f3768 | grep IPAddress
-ssh root@172.17.0.2 
-sudo docker exec -it 9a0cd89f3768 bash
-
--->
 
 ### Network troubleshooting:
 
@@ -183,12 +229,12 @@ root@cebf20657667:/# netstat -tupan
 
 5. ### run script to transfer db from one database container machine to another
 
-- create file "db_importer.sh" inside db container of postgresSQL, insert the code in file "db_importer.sh":
+- create file "db_importer.sh" inside db main container of postgresSQL, insert the code in file "db_importer.sh":
 nano db_importer.sh
+- Create file : "config.conf" and insert code. In it change variables like: IP, database's names, name of the files etc. for your need.
 - run script
 bash db_importer.sh
-- Please notice that you can change variables like: IP, database's names, name of the files etc. for your need.
-- Also here you will see dummy password, and it is very recommend to change to strong passwords. You can change vars in "config.conf" file.
+
 
 6. ###  commands to check that db has been transferred
 root@423eac21b4c1:/# psql -U postgres
@@ -198,8 +244,11 @@ root@423eac21b4c1:/# psql -U postgres
 SELECT * FROM {table_name};
 
 7. ### remove unused container db
-sudo docker rm -f <Container_ID> <Container_ID> 
-<Container_ID> 
+- Only display list of container IDs
+sudo docker ps -q
+
+sudo docker rm -f <Container_ID> <Container_ID> <Container_ID> 
+sudo docker ps
 
 -- Commands for additional operations:
 
