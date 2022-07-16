@@ -97,7 +97,7 @@ CREATE TABLE ChinaVsIndia(
 \d
 
 <!-- insert into student(rolINo, name) values (101, 'brijen'); -->
-```json
+```bash
 INSERT INTO ChinaVsIndia ("Index", "China", "India", "Year")
 VALUES
 (1,2021,1444216102,1393409033),
