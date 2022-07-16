@@ -65,7 +65,7 @@ Travel_date date not null
 
 \d
 <!-- insert into student(rolINo, name) values (101, 'brijen'); -->
-```json
+```bash
 INSERT INTO passengers ("id", "name", "email", "age", "travel_to", "paymentv", "travel_date")
 VALUES
 (1, 'Jack', 'jack12@gmail.com', 20, 'Paris', 79000, '2018-1-1'),
@@ -95,8 +95,9 @@ CREATE TABLE ChinaVsIndia(
 );
 
 \d
-```json
+
 <!-- insert into student(rolINo, name) values (101, 'brijen'); -->
+```json
 INSERT INTO ChinaVsIndia ("Index", "China", "India", "Year")
 VALUES
 (1,2021,1444216102,1393409033),
