@@ -148,7 +148,6 @@ ssh root@{ipAddress}
 apt-get install expect -y
 
 
-
 <!-- 
 tmp_postgres_sql_db
 sudo docker inspect 26bcce618c33 | grep IPAddress
@@ -186,7 +185,7 @@ nano db_importer.sh
 - run script
 bash db_importer.sh
 - Please notice that you can change variables like: IP, database's names, name of the files etc. for your need.
-- Also here you will see dummy password, and it is very recommend to change to strong passwords
+- Also here you will see dummy password, and it is very recommend to change to strong passwords. You can change vars in "config.conf" file.
 
 ```bash
 
